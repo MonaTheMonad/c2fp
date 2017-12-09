@@ -91,15 +91,16 @@ static void init() {
 static void convoluted_test() {
     function<void(const char*, int, const char*, const char*, const char*, const char*, const char*)> f = [](const char* who, int num, const char* what, const char* foo, const char* bar, const char* baz, const char* qux) {
         cout << who << " has " << num << " " << what << '\n';
-        cout << foo << bar << baz << qux << endl;
+        cout << foo << ' ' << bar << ' ' << baz << ' ' << qux << ' ' << endl;
     };
-    init();
+    // init();
     // auto pf = member_function_to_function(&decltype(f)::operator());
     // void* pt = &f;
     closure<void, const char*, int, const char*, const char*, const char*, const char*, const char*> c(f);
     // c.closure_function<decltype(f)>()(c.closure_target<decltype(f)>(), "CKMo", 2, "apples");
     // inspect(c);
-    c.function_pointer()("CKMo", 2, "apples", "foo", "bar", "baz", "qux");
+    void (*g)(const char*, int, const char*, const char*, const char*, const char*, const char*) = c.function_pointer();
+    g("CKMo", 2, "apples", "foo", "bar", "baz", "qux");
     // member_function_to_function(&decltype(f)::operator())(f, "CKMo", 2, "apples");
     // void* pf = reinterpret_cast<void*>(member_function_to_function(&decltype(f)::operator()));
     // void* pt = reinterpret_cast<void*>(&f);

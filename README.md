@@ -3,7 +3,7 @@ A poorly written library for those who want to convert closures (like `std::func
 ## Features
 What you see is what you get.
 ## Usage
-Including `c2fp.hpp`...
+Including `c2fp.hpp`
 
 ```cpp
 int i = 42;
@@ -16,6 +16,18 @@ void (*h)(int) = c.function_pointer();
 void (*k)(int) = d.function_pointer();
 function_that_takes_a_plain_function_pointer(h);
 function_that_takes_a_plain_function_pointer(k);
+```
+
+Can it handle lots of arguments? o3o
+
+```cpp
+function<void(const char*, int, const char*, const char*, const char*, const char*, const char*)> f = [](const char* who, int num, const char* what, const char* foo, const char* bar, const char* baz, const char* qux) {
+    cout << who << " has " << num << " " << what << '\n';
+    cout << foo << ' ' << bar << ' ' << baz << ' ' << qux << ' ' << endl;
+};
+closure<void, const char*, int, const char*, const char*, const char*, const char*, const char*> c(f);
+void (*g)(const char*, int, const char*, const char*, const char*, const char*, const char*) = c.function_pointer();
+g("CKMo", 2, "apples", "foo", "bar", "baz", "qux");
 ```
 ## Development
 If you know of ways to make c2fp even more questionable, feel free to submit a pull request. If you know of a more legitimate and safer way to do this, this repository might be too ugly and poorly written for you to work on.
