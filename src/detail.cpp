@@ -131,8 +131,8 @@ namespace c2fp {
             emit_rex(true, from & 8, false, to & 8);
             emit(0x89);
             emit_modrm(3, from, to);
-            debug_print("movqrr", fbuf.end() - 3, 3);
-            debug_print(from, to);
+            // debug_print("movqrr", fbuf.end() - 3, 3);
+            // debug_print(from, to);
         }
         
         void function_builder::emit_movq_rd(uint8_t from, uint32_t disp) {
@@ -141,8 +141,8 @@ namespace c2fp {
             emit_modrm(2, from, rsp);
             emit_sib(0, rsp, rsp);
             emit_dword(disp);
-            debug_print("movqrd", fbuf.end() - 7, 7);
-            debug_print(from, disp);
+            // debug_print("movqrd", fbuf.end() - 7, 7);
+            // debug_print(from, disp);
         }
         
         void function_builder::emit_movq_dr(uint32_t disp, uint8_t to) {
@@ -151,8 +151,8 @@ namespace c2fp {
             emit_modrm(2, to, rsp);
             emit_sib(0, rsp, rsp);
             emit_dword(disp);
-            debug_print("movqdr", fbuf.end() - 7, 7);
-            debug_print(disp, to);
+            // debug_print("movqdr", fbuf.end() - 7, 7);
+            // debug_print(disp, to);
         }
         
         void function_builder::emit_movq_dd(uint32_t from_disp, uint32_t to_disp, uint8_t scratch) {
@@ -164,8 +164,8 @@ namespace c2fp {
             emit_rex(true, false, false, reg & 8);
             emit(0xB8 + reg);
             emit_qword(value);
-            debug_print("movqvr", fbuf.end() - 10, 10);
-            debug_print(value, reg);
+            // debug_print("movqvr", fbuf.end() - 10, 10);
+            // debug_print(value, reg);
         }
         
         void function_builder::emit_add(uint8_t rm, uint32_t value) {
@@ -173,8 +173,8 @@ namespace c2fp {
             emit(0x81);
             emit_modrm(3, 0, rm);
             emit_dword(value);
-            debug_print("add   ", fbuf.end() - 7, 7);
-            debug_print(rm, value);
+            // debug_print("add   ", fbuf.end() - 7, 7);
+            // debug_print(rm, value);
         }
         
         void function_builder::emit_sub(uint8_t rm, uint32_t value) {
@@ -182,27 +182,27 @@ namespace c2fp {
             emit(0x81);
             emit_modrm(3, 5, rm);
             emit_dword(value);
-            debug_print("sub   ", fbuf.end() - 7, 7);
-            debug_print(rm, value);
+            // debug_print("sub   ", fbuf.end() - 7, 7);
+            // debug_print(rm, value);
         }
         
         void function_builder::emit_jmp(uint8_t rm) {
             emit(0xFF);
             emit_modrm(3, 4, rm);
-            debug_print("jmp   ", fbuf.end() - 2, 2);
-            debug_print(rm, 0);
+            // debug_print("jmp   ", fbuf.end() - 2, 2);
+            // debug_print(rm, 0);
         }
         
         void function_builder::emit_call(uint8_t rm) {
             emit(0xFF);
             emit_modrm(3, 2, rm);
-            debug_print("call  ", fbuf.end() - 2, 2);
-            debug_print(rm, 0);
+            // debug_print("call  ", fbuf.end() - 2, 2);
+            // debug_print(rm, 0);
         }
         
         void function_builder::emit_ret() {
             emit(0xC3);
-            debug_print("ret   ", fbuf.end() - 1, 1);
+            // debug_print("ret   ", fbuf.end() - 1, 1);
         }
         
         void function_builder::emit_rex(bool w, bool r, bool x, bool b) {
