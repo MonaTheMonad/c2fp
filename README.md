@@ -15,7 +15,8 @@ closure<void, int> d(g);
 void (*h)(int) = c.function_pointer();
 void (*k)(int) = d.function_pointer();
 function_that_takes_a_plain_function_pointer(h);
-function_that_takes_a_plain_function_pointer(k);```
+function_that_takes_a_plain_function_pointer(k);
+```
 ## Development
 If you know of ways to make c2fp even more questionable, feel free to submit a pull request. If you know of a more legitimate and safer way to do this, this repository might be too ugly and poorly written for you to work on.
 ### Dependencies
