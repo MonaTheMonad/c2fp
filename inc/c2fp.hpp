@@ -43,12 +43,6 @@ namespace c2fp {
         }
         
       public: // member functions
-        void* closure_function_pointer() const {
-            return raw_pf;
-        }
-        void* closure_target() const {
-            return target;
-        }
         pointer_type function_pointer() const {
             return fptr;
         }
