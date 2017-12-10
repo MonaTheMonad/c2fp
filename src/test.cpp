@@ -81,7 +81,8 @@ static void raw_emission_b(void* pf, void* pt) {
     // fb.emit_movq_rr(rdi, rsi);
     fb.emit_add(rsp, 0x18);
     fb.emit_ret();
-    reinterpret_cast<convoluted_function_t>(fb.build())("CKMo", 2, "apples", "foo", "bar", "baz", "qux");
+    auto generated_code = fb.build();
+    reinterpret_cast<convoluted_function_t&>(generated_code)("CKMo", 2, "apples", "foo", "bar", "baz", "qux");
 }
 
 static void init() {
