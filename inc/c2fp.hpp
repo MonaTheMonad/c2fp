@@ -21,8 +21,6 @@ namespace c2fp {
         static constexpr size_t arg_count = sizeof...(Args);
         
       private: // members
-        void* raw_pf;
-        void* target;
         pointer_type fptr;
         size_t size;
         
@@ -30,9 +28,9 @@ namespace c2fp {
         template <typename Function>
         closure(Function&& f) : fptr(nullptr) {
             auto op = &std::decay<Function>::type::operator();
-            raw_pf = reinterpret_cast<void*&>(op);
-            target = &f;
-            void* pf = detail::build_function(raw_pf, target, static_cast<unsigned int>(arg_count), &size);
+            void* raw_pf = reinterpret_cast<void*&>(op);
+            void* target = &f;
+            void* pf = detail::build_function(raw_pf, target, static_cast<uint32_t>(arg_count), &size);
             fptr = reinterpret_cast<pointer_type>(pf);
         }
         closure(const closure&) = delete;
