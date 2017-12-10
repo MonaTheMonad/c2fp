@@ -12,15 +12,6 @@
 namespace c2fp {
     template <typename R, typename... Args>
     class closure {
-      private:
-        template <typename Function>
-        struct lambda_traits;
-        
-        template <typename ReturnType, typename FunctionType, typename... ArgumentTypes>
-        struct lambda_traits<ReturnType (FunctionType::*)(ArgumentTypes...) const> {
-            using type = ReturnType (FunctionType::*)(ArgumentTypes...) const;
-        };
-        
       public: // member types
         using type = R(Args...);
         using pointer_type = type*;
