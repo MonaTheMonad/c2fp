@@ -29,6 +29,8 @@ closure<void, const char*, int, const char*, const char*, const char*, const cha
 void (*g)(const char*, int, const char*, const char*, const char*, const char*, const char*) = c.function_pointer();
 g("CKMo", 2, "apples", "foo", "bar", "baz", "qux");
 ```
+
+Make sure to keep the original functor and the closure object alive when using the created function pointer!
 ## Development
 If you know of ways to make c2fp even more questionable, feel free to submit a pull request. If you know of a more legitimate and safer way to do this, this repository might be too ugly and poorly written for you to work on.
 ### Dependencies
